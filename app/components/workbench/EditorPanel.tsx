@@ -220,7 +220,7 @@ export const EditorPanel = memo(
                           onClick={() => setActiveTerminal(index)}
                         >
                           <div className="i-ph:terminal-window-duotone text-lg" />
-                          Bolt Terminal
+                          Code AI Terminal
                         </button>
                       ) : (
                         <React.Fragment>
