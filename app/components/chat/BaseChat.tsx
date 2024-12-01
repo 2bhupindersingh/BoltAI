@@ -12,7 +12,7 @@ import { classNames } from '~/utils/classNames';
 import { MODEL_LIST, PROVIDER_LIST, initializeModelList } from '~/utils/constants';
 import { Messages } from './Messages.client';
 import { SendButton } from './SendButton.client';
-import { APIKeyManager } from './APIKeyManager';
+import { ApiKeyManager } from './APIKeyManager';
 import Cookies from 'js-cookie';
 import * as Tooltip from '@radix-ui/react-tooltip';
 
@@ -205,25 +205,24 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                   },
                 )}
               >
-                <ModelSelector
-                  key={provider?.name + ':' + modelList.length}
-                  model={model}
-                  setModel={setModel}
-                  modelList={modelList}
-                  provider={provider}
-                  setProvider={setProvider}
-                  providerList={PROVIDER_LIST}
-                  apiKeys={apiKeys}
-                />
-
-                {provider && (
-                  <APIKeyManager
+                <div className="flex w-full flex-col">
+                  <ModelSelector
+                    model={model}
+                    setModel={setModel}
                     provider={provider}
-                    apiKey={apiKeys[provider.name] || ''}
-                    setApiKey={(key) => updateApiKey(provider.name, key)}
+                    setProvider={setProvider}
+                    modelList={modelList}
+                    providerList={PROVIDER_LIST}
+                    apiKeys={apiKeys}
                   />
-                )}
-
+                  {provider?.getApiKeyLink && (
+                    <ApiKeyManager
+                      provider={provider}
+                      apiKey={apiKeys[provider.name] || ''}
+                      onSave={(key) => updateApiKey(provider.name, key)}
+                    />
+                  )}
+                </div>
                 <div
                   className={classNames(
                     'shadow-lg border border-bolt-elements-borderColor bg-bolt-elements-prompt-background backdrop-filter backdrop-blur-[8px] rounded-lg overflow-hidden transition-all',

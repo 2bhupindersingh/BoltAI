@@ -3,9 +3,12 @@ import { type ChatHistoryItem } from '~/lib/persistence';
 import WithTooltip from '~/components/ui/Tooltip';
 import { forwardRef } from 'react';
 
-const DeleteButton = forwardRef<HTMLButtonElement, {
-  onClick: (event: React.UIEvent) => void;
-}>((props, ref) => (
+const DeleteButton = forwardRef<
+  HTMLButtonElement,
+  {
+    onClick: (event: React.UIEvent) => void;
+  }
+>((props, ref) => (
   <WithTooltip tooltip="Delete chat">
     <button
       ref={ref}
