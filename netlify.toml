@@ -4,6 +4,15 @@
   
 [build.environment]
   NODE_VERSION = "18.18.0"
+  NPM_FLAGS = "--version"
+
+[functions]
+  directory = "build/server"
+
+[[redirects]]
+  from = "/_data/*"
+  to = "/.netlify/functions/_data/:splat"
+  status = 200
 
 [[redirects]]
   from = "/*"
@@ -19,4 +28,4 @@
 [[headers]]
   for = "/*"
     [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    "Cache-Control" = "public, max-age=0, must-revalidate"
